@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="  background-image: url(627a690a1203d_Groupe2575.jpg);">
+    <div class="main">
+        <form class="form" action="" method="POST">
+            <label for="fileInput">Choose a file:</label>
+            <input class="file" placeholder="upload file" type="file" accept=".mb4, .mb3">
+            <button type="submit">upload</button>
+        </form>
+    </div>
+
+    <div class="main" style="    transform: translateY(100%);
+    top: 23%;
+    position: relative;">
+        <div>
+            <p class="copy-text contai-div">this your output</p>
+            <button id="copy" class="copy but" style="cursor: pointer;">copy</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get all elements with the class 'copy-button'
+            var copyButtons = document.querySelectorAll('.copy');
+        
+            // Loop through each copy button
+            copyButtons.forEach(function(copyButton) {
+                // Add click event listener to each button
+                copyButton.addEventListener("click", function() {
+                    // Find the parent element containing the text to copy
+                    var copyText = copyButton.parentElement;
+        
+                    // Create a textarea element to temporarily hold the text
+                    var tempTextarea = document.createElement('textarea');
+                    tempTextarea.value = copyText.textContent;
+        
+                    // Append the textarea element to the document
+                    document.body.appendChild(tempTextarea);
+        
+                    // Select the text within the textarea
+                    tempTextarea.select();
+                    tempTextarea.setSelectionRange(0, 99999); /* For mobile devices */
+        
+                    // Copy the selected text to the clipboard
+                    document.execCommand("copy");
+        
+                    // Remove the textarea from the document
+                    document.body.removeChild(tempTextarea);
+        
+                    // Change the text of the button to "Copied!"
+                    copyButton.textContent = "Copied!";
+        
+                    // After 0.4 seconds, revert the text back to "Copy"
+                    setTimeout(function() {
+                        copyButton.textContent = "Copy";
+                    }, 800);
+                });
+            });
+        });
+        </script>
+</body>
+</html>
